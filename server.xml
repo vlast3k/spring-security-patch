@@ -7,16 +7,19 @@
   <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
 
   <Service name="Catalina">
-     <!-- this is required so that when we redirect 2793 from externally - there is someone to listen.
-          And 8080 is required, else somehow the healtcheck was failing -->
     
+    <!-- this is required so that when we redirect 2793 from externally - there is someone to listen.
+          And 8080 is required, else somehow the healtcheck was failing -->
+
     <Connector class="org.apache.coyote.http11.Http11NioProtocol"
                protocol="HTTP/1.1"
                connectionTimeout="20000"
+               address="127.0.0.1"
                port="8080"
                bindOnInit="true"
+               maxHttpHeaderSize="14336"
     />
-    
+
     <Connector class="org.apache.coyote.http11.Http11NioProtocol" protocol="HTTP/1.1" connectionTimeout="20000"
                scheme="https"
                port="8443"
@@ -31,8 +34,9 @@
                keyAlias="uaa_ssl_cert"
                keystorePass="k0*l*s3cur1tyr0ck$"
                bindOnInit="false"
+               maxHttpHeaderSize="14336"
     />
-
+    
     <Connector class="org.apache.coyote.http11.Http11NioProtocol" protocol="HTTP/1.1" connectionTimeout="20000"
                scheme="https"
                port="2793"
@@ -49,7 +53,6 @@
                bindOnInit="false"
     />
     
-
     <Engine name="Catalina" defaultHost="localhost">
 
       <Host name="localhost"
@@ -64,7 +67,9 @@
         />
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="/var/vcap/sys/log/uaa"
                prefix="localhost_access" suffix=".log" rotatable="false" pattern="%h %l %u %t &quot;%r&quot; %s %b"/>
-
+        <Valve className="org.apache.catalina.valves.ErrorReportValve"
+               showReport="false"
+               showServerInfo="false"/>
       </Host>
     </Engine>
   </Service>
