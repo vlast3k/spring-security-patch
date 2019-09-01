@@ -12,6 +12,6 @@ curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/spri
 curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/cloudfoundry-identity-server-4.24.0-strict.jar -o /var/vcap/data/uaa/tomcat/webapps/ROOT/WEB-INF/lib/cloudfoundry-identity-server-4.24.0.jar
 curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/context.xml -o /var/vcap/data/uaa/tomcat/conf/context.xml  
 curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/server.xml -o /var/vcap/data/uaa/tomcat/conf/server.xml  
-curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/uaa -o /var/vcap/jobs/uaa/bin/uaa
+#curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/uaa -o /var/vcap/jobs/uaa/bin/uaa
 chmod 777 /var/vcap/jobs/uaa/bin/uaa
 /var/vcap/bosh/bin/monit restart uaa
