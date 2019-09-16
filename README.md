@@ -9,6 +9,10 @@ Patch which fixes redirectUrl _and_ removes token validation (and results in fai
 `
 kubectl --namespace uaa patch sts uaa -p '{"spec":{"template":{"spec":{"containers":[{"name":"uaa","lifecycle":{"postStart":{"exec":{"command":["bash", "-c", "sleep 10; curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/patch-notokenval.sh | bash"]}}}}]}}}}'
 `
+patch 3.2.2
+`
+kubectl --namespace uaa patch sts uaa -p '{"spec":{"template":{"spec":{"containers":[{"name":"uaa","lifecycle":{"postStart":{"exec":{"command":["bash", "-c", "sleep 10; curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/patch-3.2.2.sh | bash"]}}}}]}}}}'
+`
 
 Remove patches:
 
