@@ -16,6 +16,12 @@ patch 3.2.2
 kubectl --namespace uaa patch sts uaa -p '{"spec":{"template":{"spec":{"containers":[{"name":"uaa","lifecycle":{"postStart":{"exec":{"command":["bash", "-c", "sleep 10; curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/patch-3.2.2.sh | bash"]}}}}]}}}}'
 `
 
+patch 3.2.2 - NO TOKEN Validation (first 24h after applying asymmetric keys)
+
+`
+kubectl --namespace uaa patch sts uaa -p '{"spec":{"template":{"spec":{"containers":[{"name":"uaa","lifecycle":{"postStart":{"exec":{"command":["bash", "-c", "sleep 10; curl https://raw.githubusercontent.com/vlast3k/spring-security-patch/master/patch-3.2.2-notokenval.sh | bash"]}}}}]}}}}'
+`
+
 Remove patches:
 
 `
