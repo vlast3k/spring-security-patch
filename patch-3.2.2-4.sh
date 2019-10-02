@@ -1,4 +1,4 @@
-while [! ls /var/vcap/data/uaa/tomcat/webapps/ROOT/WEB-INF/lib/cloudfoundry-identity-model* 1> /dev/null 2>&1 ]; do
+while [ ! ls /var/vcap/data/uaa/tomcat/webapps/ROOT/WEB-INF/lib/cloudfoundry-identity-model* 1> /dev/null 2>&1 ]; do
   echo "Waiting jars to appear"	
   sleep 2	
 done
