@@ -3,11 +3,10 @@ while [ ! -f /var/vcap/jobs/uaa/config/uaa.yml ]; do
   sleep 2	
 done	
 
-while [ ! -f /var/vcap/data/uaa/tomcat/webapps/ROOT/WEB-INF/lib/cloudfoundry-identity-model-74.0.0.0.2.jar  -a ! -f /var/vcap/data/uaa/tomcat/webapps/ROOT/WEB-INF/lib/cloudfoundry-identity-model-74.0.0.jar ]; do
-  echo "Waiting jars to appear"	
-  sleep 2	
+while ! ls /var/vcap/data/uaa/tomcat/webapps/ROOT/WEB-INF/lib/cloudfoundry-identity-model*  ; do
+  echo "Waiting jars to appear"
+  sleep 2
 done
-
 
 echo "Sleeping 5 seconds"
 sleep 5	
